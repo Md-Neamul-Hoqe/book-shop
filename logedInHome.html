@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Shop</title>
+    <link rel="shortcut icon" href="./icons/Logo.png" type="image/x-icon">
+
+    <!-- Tailwind CDN link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Roboto & Montserrat Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- avenir font -->
+    <link rel="stylesheet" href="./fonts/avenir/AvenirLTStd-Roman.otf">
+    <link rel="stylesheet" href="./fonts/avenir/AvenirLTStd-Book.otf">
+    <link rel="stylesheet" href="./fonts/avenir/AvenirLTStd-Black.otf">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/d7b7563d24.js" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="px-[8.5rem] mx-auto min-w-min font-roboto text-[16px]">
+    <header class="bg-white text-black">
+        <img class="absolute left-1/3" src="./icons/grids-top.png" alt="top grids">
+        <nav class="py-9 flex justify-end">
+            <div class="flex gap-12 justify-start items-center w-1/2 font-medium">
+                <img src="./icons/Logo.png" alt="Site Logo" height="31" width="166">
+            </div>
+            <div class="flex gap-20 justify-end items-center w-1/2 font-medium">
+                <ul id="links" class="flex gap-16 text-light-dark">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./search.html">Orders</a></li>
+                    <li><a href="./createAccount.html">Admin</a></li>
+                    <li><a href="#">Deals</a></li>
+                </ul>
+                <button class="w-10 h-auto"><img src="./icons/Avatar face.png" alt="User Icon"></button>
+
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="search-section">
+            <form class="flex justify-center my-[70px]" action="#" method="get">
+                <div class="flex justify-center items-center relative w-1/2">
+                    <img class="w-6 h-6 absolute left-4" src="./icons/search 1.png" alt="search">
+                    <input class="border-0 w-full bg-light-gray py-4 rounded-s-md ps-12 leading-6 text-gray"
+                        type="search" name="search" id="searchText" placeholder="Search Box">
+                </div>
+                <button class="bg-blue px-14 py-4 text-white rounded-e-md border-0">Search</button>
+            </form>
+        </section>
+        <section id="book-shelf-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[30px] mb-[99px]">
+            <div class="rounded-[20px] p-5 shadow-lg">
+                <figure class="bg-light-gray rounded-[20px]">
+                    <img class="w-full rounded-[10px] px-12 py-8" src="./books/image 25.png" alt="book-19">
+                </figure>
+                <div class="mb-[22px]">
+                    <h4 class="pt-4 font-bold text-2xl">JavaScript Everywhere</h4>
+                    <p class="pt-2 text-gray">Adam D. Scottark Lutz</p>
+                </div>
+                <div class="w-full"><span class="justify-start text-blue text-4xl font-black">$<span id="price">134</span></span><button class="bg-blue py-[14px] px-[38px] rounded-[10px] float-right text-white font-medium">Buy Now</button></div>
+            </div>
+            <div class="rounded-[20px] p-5 shadow-lg">
+                <figure class="bg-light-gray rounded-[20px]">
+                    <img class="w-full rounded-[10px] px-12 py-8" src="./books/image 19.png" alt="book-19">
+                </figure>
+                <div class="mb-[22px]">
+                    <h4 class="pt-4 font-bold text-2xl">Eloquent JavaScript</h4>
+                    <p class="pt-2 text-gray">Marijn Haverbeke</p>
+                </div>
+                <div class="w-full"><span class="justify-start text-blue text-4xl font-black">$<span id="price">134</span></span><button class="bg-blue py-[14px] px-[38px] rounded-[10px] float-right text-white font-medium">Buy Now</button></div>
+            </div>
+            <div class="rounded-[20px] p-5 shadow-lg">
+                <figure class="bg-light-gray rounded-[20px]">
+                    <img class="w-full rounded-[10px] px-12 py-8" src="./books/image 20.png" alt="book-19">
+                </figure>
+                <div class="mb-[22px]">
+                    <h4 class="pt-4 font-bold text-2xl">Learning React</h4>
+                    <p class="pt-2 text-gray">Alex Banks & Eve Porcello</p>
+                </div>
+                <div class="w-full"><span class="justify-start text-blue text-4xl font-black">$<span id="price">134</span></span><button class="bg-blue py-[14px] px-[38px] rounded-[10px] float-right text-white font-medium">Buy Now</button></div>
+            </div>
+            <div class="rounded-[20px] p-5 shadow-lg">
+                <figure class="bg-light-gray rounded-[20px]">
+                    <img class="w-full rounded-[10px] px-12 py-8" src="./books/image 21.png" alt="book-19">
+                </figure>
+                <div class="mb-[22px]">
+                    <h4 class="pt-4 font-bold text-2xl">The Road to React</h4>
+                    <p class="pt-2 text-gray">Robin Wieruch</p>
+                </div>
+                <div class="w-full"><span class="justify-start text-blue text-4xl font-black">$<span id="price">134</span></span><button class="bg-blue py-[14px] px-[38px] rounded-[10px] float-right text-white font-medium">Buy Now</button></div>
+            </div>
+            <div class="rounded-[20px] p-5 shadow-lg">
+                <figure class="bg-light-gray rounded-[20px]">
+                    <img class="w-full rounded-[10px] px-12 py-8" src="./books/image 22.png" alt="book-19">
+                </figure>
+                <div class="mb-[22px]">
+                    <h4 class="pt-4 font-bold text-2xl">The C Programming Language</h4>
+                    <p class="pt-2 text-gray">Brain W. Kernighan Dennis M. Ritchie</p>
+                </div>
+                <div class="w-full"><span class="justify-start text-blue text-4xl font-black">$<span id="price">134</span></span><button class="bg-blue py-[14px] px-[38px] rounded-[10px] float-right text-white font-medium">Buy Now</button></div>
+            </div>
+            <div class="rounded-[20px] p-5 shadow-lg">
+                <figure class="bg-light-gray rounded-[20px]">
+                    <img class="w-full rounded-[10px] px-12 py-8" src="./books/image 23.png" alt="book-19">
+                </figure>
+                <div class="mb-[22px]">
+                    <h4 class="pt-4 font-bold text-2xl">Effective TypeScript</h4>
+                    <p class="pt-2 text-gray">Dan Vanderkam</p>
+                </div>
+                <div class="w-full"><span class="justify-start text-blue text-4xl font-black">$<span id="price">134</span></span><button class="bg-blue py-[14px] px-[38px] rounded-[10px] float-right text-white font-medium">Buy Now</button></div>
+            </div>
+            <div class="rounded-[20px] p-5 shadow-lg">
+                <figure class="bg-light-gray rounded-[20px]">
+                    <img class="w-full rounded-[10px] px-12 py-8" src="./books/image 29.png" alt="book-19">
+                </figure>
+                <div class="mb-[22px]">
+                    <h4 class="pt-4 font-bold text-2xl">Python Crash Course</h4>
+                    <p class="pt-2 text-gray">Eric Matthes</p>
+                </div>
+                <div class="w-full"><span class="justify-start text-blue text-4xl font-black">$<span id="price">134</span></span><button class="bg-blue py-[14px] px-[38px] rounded-[10px] float-right text-white font-medium">Buy Now</button></div>
+            </div>
+            <div class="rounded-[20px] p-5 shadow-lg">
+                <figure class="bg-light-gray rounded-[20px]">
+                    <img class="w-full rounded-[10px] px-12 py-8" src="./books/image 30.png" alt="book-19">
+                </figure>
+                <div class="mb-[22px]">
+                    <h4 class="pt-4 font-bold text-2xl">Software Engineering at Google</h4>
+                    <p class="pt-2 text-gray">Titus Winter</p>
+                </div>
+                <div class="w-full"><span class="justify-start text-blue text-4xl font-black">$<span id="price">134</span></span><button class="bg-blue py-[14px] px-[38px] rounded-[10px] float-right text-white font-medium">Buy Now</button></div>
+            </div>
+            <div class="rounded-[20px] p-5 shadow-lg">
+                <figure class="bg-light-gray rounded-[20px]">
+                    <img class="w-full rounded-[10px] px-12 py-8" src="./books/image 31.png" alt="book-19">
+                </figure>
+                <div class="mb-[22px]">
+                    <h4 class="pt-4 font-bold text-2xl">Learn JavaScript Quickly</h4>
+                    <p class="pt-2 text-gray">Dan Vanderkam</p>
+                </div>
+                <div class="w-full"><span class="justify-start text-blue text-4xl font-black">$<span id="price">134</span></span><button class="bg-blue py-[14px] px-[38px] rounded-[10px] float-right text-white font-medium">Buy Now</button></div>
+            </div>
+        </section>
+    </main>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
