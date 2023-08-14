@@ -30,30 +30,29 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 
-<body class="px-[8.5rem] mx-auto min-w-min font-roboto text-[16px]">
+<body class="md:px-20 xl:px-[8.5rem] px-3 mx-auto min-w-min font-roboto text-base">
     <header class="bg-white text-black">
-        <img class="absolute left-1/3" src="./icons/grids-top.png" alt="top grids">
-        <nav class="py-9 flex justify-end">
-            <div class="flex gap-12 justify-start items-center w-1/2 font-medium">
+        <img class="absolute left-1/3 w-1/4 md:w-auto -z-0" src="./icons/grids-top.png" alt="top grids">
+        <nav class="py-9 flex justify-start">
+            <a href="./index.html" class="flex gap-12 justify-start items-center w-1/2 font-medium">
                 <img src="./icons/Logo.png" alt="Site Logo" height="31" width="166">
-            </div>
-            <div class="flex gap-20 justify-end items-center w-1/2 font-medium">
-                <ul id="links" class="flex gap-16 text-light-dark">
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./search.html">Orders</a></li>
-                    <li><a href="./createAccount.html">Admin</a></li>
-                    <li><a href="#">Deals</a></li>
+            </a>
+            <div class="flex justify-end md:gap-10 xl:gap-20 md:items-center md:w-1/2 font-medium z-0">
+                <ul id="links" class="md:flex hidden md:gap-8 xl:gap-16 text-light-dark">
+                    <li><a class="min-w-max block" href="./index.html">Home</a></li>
+                    <li><a class="min-w-max block" href="./search.html">Orders</a></li>
+                    <li><a class="min-w-max block" href="./createAccount.html">Admin</a></li>
+                    <li><a class="min-w-max block" href="#">Deals</a></li>
                 </ul>
-                <button id="loginBtn" class="border-0 rounded bg-blue text-white font-bold px-6 py-3" onclick="login()"
-                    type="submit">Login</button>
+                <button id="loginBtn" class="w-10 h-auto rounded-full bg-[#BEE3EB]" onclick="login()">Login</button>
             </div>
         </nav>
     </header>
     <main>
         <!-- Form Section -->
-        <section class="flex flex-col min-h-screen px-36 justify-center items-center">
+        <section class="flex flex-col min-h-screen px-5 xl:px-36 justify-center items-center">
             <form action="#"
-                class="min-w-[520px] flex flex-col justify-center border border-borderGray rounded px-14 py-9">
+                class="w-full xl:min-w-[520px] flex flex-col justify-center border border-borderGray rounded px-14 py-9">
                 <h2 class="text-2xl font-bold font-montserret pb-4">Login</h2>
                 <input class="block border-b border-borderGray w-full text-sm font-medium font-montserret mt-6 py-3"
                     type="email" id="unameEmail" placeholder="Username or Email">
