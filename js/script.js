@@ -1,8 +1,4 @@
 console.clear();
-/**
- * Important Comments
- * Recheck fixed index in childNodes[index] before live upload the cite
- */
 
 /* Tailwind Customisations */
 tailwind.config = {
@@ -63,19 +59,20 @@ btn.forEach((button) => {
     /* Save to the local Storage to use another page (checkOut.html) */
     localStorage.setItem(
       "price",
-      event.target.parentNode.childNodes[0].childNodes[1].innerHTML
+      event.target.parentElement.children[0].children[0].innerHTML
     );
     localStorage.setItem(
       "bookName",
-      event.target.parentNode.parentNode.childNodes[3].childNodes[1].innerHTML
+      event.target.parentElement.parentElement.children[1].children[0].innerHTML
     );
-    const book = event.target.parentNode.parentNode;
-    const bookShelf = event.target.parentNode.parentNode.parentNode.childNodes;
-    console.log();
+    // console.log(event.target.parentElement.parentElement);
+    const book = event.target.parentElement.parentElement;
+    const bookShelf =
+      event.target.parentElement.parentElement.parentElement.children;
     let theBook = Array.from(bookShelf).indexOf(book);
     localStorage.setItem("theBook", theBook);
 
-    // console.log(theBook);
+    console.log(theBook);
 
     location.pathname = "/checkOut.html";
   });
@@ -89,8 +86,8 @@ if (location.pathname === "/checkOut.html") {
   const id = localStorage.getItem("theBook");
 
   const links = document.getElementById("links");
-  console.log(links.childNodes[7].childNodes[0].innerHTML);
-  links.childNodes[7].childNodes[0].innerHTML = `<img class='inline' src="./icons/shopping-cart.png" alt="cart">&nbsp;Checkout`;
+
+  links.children[3].children[0].innerHTML = `<img class='inline' src="./icons/shopping-cart.png" alt="cart">&nbsp;Checkout`;
   /* Initialise quantity for new items */
   var quantity = 1;
   const tbody = document.querySelector("#cart-section tbody");
@@ -101,17 +98,17 @@ if (location.pathname === "/checkOut.html") {
   /* check is new item added to the cart or not */
   let newBookSelected = false;
   if (existingBookInCartList) {
-    const inputOnRow = existingBookInCartList.childNodes[3].childNodes[0];
-
+    const inputOnRow = existingBookInCartList.children[1].children[0];
     /* Update the quantity */
-    quantity = parseFloat(inputOnRow.getAttribute("value")) + 1 || 1;
+    quantity = parseFloat(inputOnRow.value) + 1 || 1;
 
     /* update the quantity value of the row */
     inputOnRow.setAttribute("value", quantity);
 
     /* update the price value of the row */
-    existingBookInCartList.childNodes[5].innerHTML =
-      "$" + (price * quantity).toFixed(2);
+    existingBookInCartList.children[2].children[0].innerHTML = (
+      price * quantity
+    ).toFixed(2);
   } else {
     newBookSelected = true;
     /* To adding new row to tbody, create some elements */
@@ -131,27 +128,19 @@ if (location.pathname === "/checkOut.html") {
     tbody.appendChild(tr);
   }
 
-  if (newBookSelected) {
-    var numOfCartItems = Math.floor((tbody.childNodes.length + 1) / 2);
-  } else {
-    var numOfCartItems = Math.floor((tbody.childNodes.length - 1) / 2);
-  }
+  var numOfCartItems = tbody.children.length;
 
+  console.log(numOfCartItems);
+  console.dir(tbody.children[0].children[2].innerHTML);
   let total = 0;
   for (let index = 0; index < numOfCartItems; index++) {
-    let currentPrice =
-      tbody.childNodes[2 * index + 1].childNodes[5].childNodes[1].innerHTML;
+    let currentPrice = tbody.children[index].children[2].children[0].innerHTML;
 
     total += parseFloat(currentPrice);
   }
   const TotalPrice = document.getElementById("TotalPrice");
   TotalPrice.innerHTML = total.toFixed(2);
 }
-//   const sectionId = document.getElementById("book-shelf-section");
-//   console.log(sectionId.childNodes);
-//   console.log(sectionId.childNodes[1].childNodes[5].childNodes[1]);
-//   sectionId.childNodes.inde
-// }
 
 if (location.pathname === "/admin_panel.html") {
   console.log("This is admin panel.");
