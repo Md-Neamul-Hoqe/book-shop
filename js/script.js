@@ -69,10 +69,10 @@ btn.forEach((button) => {
     const book = event.target.parentElement.parentElement;
     const bookShelf =
       event.target.parentElement.parentElement.parentElement.children;
-    let theBook = Array.from(bookShelf).indexOf(book);
-    localStorage.setItem("theBook", theBook);
+    let theBookId = Array.from(bookShelf).indexOf(book);
+    localStorage.setItem("theBookId", theBookId);
 
-    console.log(theBook);
+    // console.log(theBookId);
 
     location.pathname = "/checkOut.html";
   });
@@ -83,7 +83,7 @@ if (location.pathname === "/checkOut.html") {
   let getPrice = localStorage.getItem("price");
   const price = parseFloat(getPrice).toFixed(2);
   const bookName = localStorage.getItem("bookName");
-  const id = localStorage.getItem("theBook");
+  const id = localStorage.getItem("theBookId");
 
   const links = document.getElementById("links");
 
@@ -130,7 +130,7 @@ if (location.pathname === "/checkOut.html") {
 
   var numOfCartItems = tbody.children.length;
 
-  console.log(numOfCartItems);
+  // console.log(numOfCartItems);
   console.dir(tbody.children[0].children[2].innerHTML);
   let total = 0;
   for (let index = 0; index < numOfCartItems; index++) {
@@ -143,7 +143,7 @@ if (location.pathname === "/checkOut.html") {
 }
 
 if (location.pathname === "/admin_panel.html") {
-  console.log("This is admin panel.");
+  // console.log("This is admin panel.");
   const fileInput = document.getElementById("bookInfo-image");
   // console.dir(fileInput.chil);
 }
