@@ -39,7 +39,7 @@
                 <img src="./icons/Logo.png" alt="Site Logo" height="31" width="166">
             </a>
             <div class="flex justify-end md:gap-10 xl:gap-20 md:items-center md:w-1/2 font-medium z-0">
-                <ul id="links" class="md:flex hidden md:gap-8 xl:gap-16 text-light-dark">
+                <ul id="links" class="md:flex hidden md:gap-5 xl:gap-16 text-light-dark">
                     <li><a class="min-w-max block" href="./index.html">Home</a></li>
                     <li><a class="min-w-max block" href="./search.html">Orders</a></li>
                     <li><a class="min-w-max block" href="./createAccount.html">Admin</a></li>
@@ -53,27 +53,33 @@
 
     <main>
         <section id="cart-section" class="w-full">
-            <table class="w-full shadow-lg rounded-lg border-separate p-6">
+            <table class="w-full shadow-lg rounded-lg border-separate p-2 md:p-6">
                 <caption class="caption-top text-start mb-8 font-bold text-4xl">Check Out</caption>
-                <thead class="px-3">
-                    <tr class="h-16 border-b border-borderGray text-gray text-xl font-medium">
-                        <th class="border-b pb-3 text-start ps-5">Description</th>
-                        <th class="border-b pb-3 text-center">Quantity</th>
-                        <th class="border-b pb-3 pr-10 text-end">Price</th>
+                <thead>
+                    <tr class="h-16 pb-3 text-gray text-xl font-medium">
+                        <th class="border-b text-start md:ps-5">Description</th>
+                        <th class="border-b text-center">Quantity</th>
+                        <th class="border-b md:pr-10 text-end">Price</th>
                     </tr>
                 </thead>
                 <tbody class="text-xl font-medium">
                     <tr id="2" class="h-14">
-                        <td class="ps-5">Demo name Here</td>
+                        <td class="md:ps-5">Demo name Here</td>
                         <td class="text-center w-96"><input class="w-1/4 text-center" type="number" name="Quantity"
-                                id="quantites" value="5"></td>
-                        <td class="text-end w-96 pe-5">$ <span>454.00</span></td>
+                                id="quantites" value="1"></td>
+                        <td class="text-end w-96 md:pe-5">$ <span>454.00</span></td>
+                    </tr>
+                    <tr id="8" class="h-14">
+                        <td class="md:ps-5">JavaScript Everywhere</td>
+                        <td class="text-center w-96"><input class="w-1/4 text-center" type="number" name="Quantity"
+                                id="quantites" value="1"></td>
+                        <td class="text-end w-96 md:pe-5">$ <span>454.00</span></td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <tr class="font-bold text-xl h-16">
-                        <td class="border-t pt-3 border-borderGray ps-5" colspan="2">Total</td>
-                        <td class="border-t pt-3 border-borderGray w-96 text-end pr-3">$ <span id="TotalPrice"></span>
+                    <tr class="font-bold text-xl h-16 pt-3">
+                        <td class="border-t border-borderGray md:ps-5" colspan="2">Total</td>
+                        <td class="border-t border-borderGray w-96 text-end md:pr-3">$ <span id="TotalPrice"></span>
                         </td>
                     </tr>
                 </tfoot>

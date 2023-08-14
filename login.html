@@ -50,15 +50,18 @@
     </header>
     <main>
         <!-- Form Section -->
-        <section class="flex flex-col min-h-screen px-5 xl:px-36 justify-center items-center">
+        <section
+            class="flex md:min-w-[570px] lg:w-11/12 mx-auto flex-col min-h-screen xl:px-36 justify-center items-center">
             <form action="#"
-                class="w-full xl:min-w-[520px] flex flex-col justify-center border border-borderGray rounded px-14 py-9">
-                <h2 class="text-2xl font-bold font-montserret pb-4">Login</h2>
-                <input class="block border-b border-borderGray w-full text-sm font-medium font-montserret mt-6 py-3"
+                class="w-full flex flex-col justify-center border border-borderGray rounded xl:px-14 xl:py-9 p-5">
+                <h2 class="text-2xl font-bold font-montserret pb-2 md:pb-4">Login</h2>
+                <input
+                    class="block border-b border-borderGray w-full text-sm font-medium font-montserret mt-2 xl:mt-6 py-3"
                     type="email" id="unameEmail" placeholder="Username or Email">
-                <input class="block border-b border-borderGray w-full text-sm font-medium font-montserret mt-12 py-3"
+                <input
+                    class="block border-b border-borderGray w-full text-sm font-medium font-montserret mt-2 xl:mt-12 py-3"
                     type="password" name="password" id="password" placeholder="Password">
-                <div class="flex justify-between mt-6 mb-[50px]">
+                <div class="flex justify-between mt-2 md:mt-6 mb-[50px]">
                     <div class="font-medium font-avenir"><input type="checkbox" name="remember" id="rememberMe">
                         <span>Remember Me</span>
                     </div>
@@ -73,11 +76,11 @@
                             account</a></span>
                 </div>
             </form>
-            <div class="py-7 min-w-[520px] flex items-center gap-3">
+            <div class="py-7 w-full lg:w-10/12 xl:w-8/12 mx-auto  flex items-center gap-3">
                 <hr class="text-borderGray w-1/2">Or
                 <hr class="text-borderGray w-1/2">
             </div>
-            <div class="min-w-[520px]">
+            <div class=" w-full lg:w-10/12 xl:w-8/12 mx-auto mb-4">
                 <div class="flex justify-start items-center mb-3"><img class="absolute w-[37px] ml-4"
                         src="./icons/facebook.png" alt="fb"><input
                         class="border border-borderGray w-full p-4 rounded-full" type="submit" name="loginE" id="loginE"

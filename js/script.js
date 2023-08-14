@@ -69,10 +69,10 @@ btn.forEach((button) => {
     const book = event.target.parentElement.parentElement;
     const bookShelf =
       event.target.parentElement.parentElement.parentElement.children;
-    let theBookId = Array.from(bookShelf).indexOf(book);
+    const theBookId = Array.from(bookShelf).indexOf(book);
     localStorage.setItem("theBookId", theBookId);
 
-    // console.log(theBookId);
+    console.log(Array.from(bookShelf).indexOf(book));
 
     location.pathname = "/checkOut.html";
   });
@@ -118,9 +118,9 @@ if (location.pathname === "/checkOut.html") {
     tr.setAttribute("id", id);
     tr.setAttribute("class", "h-14");
     tr.innerHTML = `
-    <td class="ps-5">${bookName}</td>
+    <td class="md:ps-5">${bookName}</td>
     <td class="text-center w-96"><input class="w-1/4 text-center" type="number" name="Quantity" id="quantity" value="${quantity}"></td>
-    <td class="text-end w-96 pe-5">\$<span>${(price * quantity).toFixed(
+    <td class="text-end w-96 md:pe-5">\$<span>${(price * quantity).toFixed(
       2
     )}</span></td>`;
 
@@ -131,7 +131,7 @@ if (location.pathname === "/checkOut.html") {
   var numOfCartItems = tbody.children.length;
 
   // console.log(numOfCartItems);
-  console.dir(tbody.children[0].children[2].innerHTML);
+  // console.dir(tbody.children[0].children[2].innerHTML);
   let total = 0;
   for (let index = 0; index < numOfCartItems; index++) {
     let currentPrice = tbody.children[index].children[2].children[0].innerHTML;
@@ -142,8 +142,49 @@ if (location.pathname === "/checkOut.html") {
   TotalPrice.innerHTML = total.toFixed(2);
 }
 
+/* admin_panel [add book] */
 if (location.pathname === "/admin_panel.html") {
   // console.log("This is admin panel.");
   const fileInput = document.getElementById("bookInfo-image");
-  // console.dir(fileInput.chil);
+  fileInput.addEventListener(
+    "change",
+    function (fileUploadingEvent) {
+      console.log(fileUploadingEvent);
+      const numOfFiles = fileUploadingEvent.target.files.length;
+      const fileName = fileUploadingEvent.target.files[0].name;
+      const fileSize = fileUploadingEvent.target.files[0].size;
+      const fileType = fileUploadingEvent.target.files[0].type;
+      const theFile = fileUploadingEvent.target.files[0];
+      const lastModifiedDate =
+        fileUploadingEvent.target.files[0].lastModifiedDate;
+      // if (fileName) {
+      //   console.log(theFile);
+      //   console.log(numOfFiles);
+      //   console.log(fileUploadingEvent.target.files, fileSize, fileType);
+      //   console.log(lastModifiedDate);
+      // }
+    },
+    false
+  );
+
+  /* left side bar */
+  const menuLinks = document
+    .getElementById("leftSidebar")
+    .querySelectorAll("li");
+  console.log(menuLinks);
+  // menuLinks.forEach((li) => {
+  //   li.addEventListener("click", function (event) {
+  //     event.target.style.backgroundColor = "bg-active-blue";
+  //     // event.target.addClass = "bg-active-blue";
+  //     // delete event.target.removeClass;
+  //     console.log(event.target.classList);
+  //   });
+  //   li.addEventListener("dblclick", function (event) {
+  //     if (event.target.style.backgroundColor == "bg-active-blue") {
+  //       console.log(event.target.classList[event.target.classList.length - 1]);
+  //       event.target.style.backgroundColor = "transparent";
+  //       console.log(event.target.classList);
+  //     }
+  //   });
+  // });
 }
