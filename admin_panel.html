@@ -24,169 +24,65 @@
     <link rel="stylesheet" href="./fonts/avenir/AvenirLTStd-Black.otf">
 
     <!-- Font Awesome -->
-    <!-- <script src="https://kit.fontawesome.com/d7b7563d24.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/d7b7563d24.js" crossorigin="anonymous"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./style.css">
 </head>
 
-<body class="md:px-20 xl:px-[8.5rem] px-3 mx-auto min-w-min font-roboto text-base">
-    <header class="bg-white text-black">
-        <img class="absolute left-1/3 w-1/4 md:w-auto -z-0" src="./icons/grids-top.png" alt="top grids">
-        <nav class="py-9 flex justify-end">
-            <a href="./index.html" class="flex gap-12 justify-start items-center md:w-1/2 font-medium">
-                <img src="./icons/Logo.png" alt="Site Logo" height="31" width="166">
-            </a>
-            <div class="flex justify-end md:gap-10 xl:gap-20 md:items-center md:w-1/2 font-medium z-0">
-                <ul id="links" class="md:flex hidden md:gap-8 xl:gap-16 text-light-dark">
-                    <li><a class="min-w-max block" href="./index.html">Home</a></li>
-                    <li><a class="min-w-max block" href="./checkOut.html">Orders</a></li>
-                    <li><a class="min-w-max block" href="./admin_panel.html">Admin</a></li>
-                    <li><a class="min-w-max block" href="#">Deals</a></li>
-                </ul>
-                <button id="loginBtn" class="border-0 rounded bg-blue text-white font-bold px-6 py-3"
-                    onclick="login()">Login</button>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <section id="search-section">
-            <form class="flex justify-center my-[70px]" action="#" method="get">
-                <div class="flex items-center relative w-1/2">
-                    <img class="w-6 h-6 absolute left-4" src="./icons/search 1.png" alt="search">
-                    <input class="border-0 w-full bg-light-gray py-4 rounded-s-md ps-12 leading-6 text-gray"
-                        type="search" name="search" id="searchText" placeholder="Search Box">
+<body>
+    <main class="flex">
+        <aside class="bg-dip-blue flex flex-col min-h-screen w-80">
+            <figure class="flex justify-center mt-7">
+                <img src="./icons/white-logo.png" alt="logo" width="166" height="31">
+            </figure>
+            <ul class="w-full text-white flex flex-col mt-14">
+                <li class="items-center w-full py-3 my-3"><a class="w-24 mx-auto inline-block" href="#"></a><img
+                        class="mr-2 w-6 inline" src="./icons/grid 1.png" alt="grid icon">Manage Book</li>
+                <li class="items-center w-full py-3 my-3 hover:bg-active-blue"><a class="w-24 mx-auto inline-block"
+                        href="#"></a><i class="w-6 fa-solid fa-plus"></i>Add Book</li>
+                <li class="items-center w-full py-3 my-3"><a class="w-24 mx-auto inline-block" href="#"></a><i
+                        class="w-6 fa-solid fa-pen"></i>Edit Book</li>
+            </ul>
+        </aside>
+        <aside class="flex-1">
+            <header class="pl-8 w-full">
+                <h1 href="#" class="font-bold text-[#0C0C0C] text-[22px] my-[21px] h-10">Add Book</h1>
+            </header>
+            <main class="pt-[50px] h-[calc(100vh-82px)] px-8 py-12 bg-[#F4F7FC]">
+                <div id="bookInfo"
+                    class="border-0 px-8 py-7 bg-white w-full rounded-[20px] grid grid-flow-col grid-rows-2 grid-cols-2 gap-12">
+                    <div>
+                        <label class="font-bold mb-3 text-black block" for="bookInfoName">Book Name</label><input
+                            type="text" name="bookInfoName" id="bookInfo-name" placeholder="Enter Name"
+                            class="border border-[#C9C9C9] rounded pl-3 py-[11px] w-full">
+                    </div>
+                    <div>
+                        <label class="font-bold mb-3 text-black block" for="bookInfoPrice">Add Price</label><input
+                            type="text" name="bookInfoPrice" id="bookInfo-price" placeholder="Enter Price"
+                            class="border border-[#C9C9C9] rounded pl-3 py-[11px] w-full">
+                    </div>
+                    <div>
+                        <label class="font-bold mb-3 text-black block" for="bookInfoAuthor">Author Name</label><input
+                            type="text" name="bookInfoAuthor" id="bookInfo-author" placeholder="Enter Name"
+                            class="border border-[#C9C9C9] rounded pl-3 py-[11px] w-full">
+                    </div>
+                    <div>
+                        <label class="font-bold mb-5 text-black block" for="bookInfoImage">Add Book Cover Photo</label>
+                        <img class="absolute w-6 h-6 ml-3 mt-0" src="./icons/cloud-upload-outline 1.png"
+                            alt="upload photo">
+                        <label title="upload a image of this book"
+                            class="text-[#6946F4] bg-[#E3DCFF] border-[#6946F4] ps-12 pr-7 py-[12px] rounded cursor-pointer"
+                            for="bookInfoImage">Upload photo</label>
+                        <!-- <button type="submit" id="bookInfo-image"
+                            class="text-[#6946F4] bg-[#E3DCFF] border-[#6946F4] rounded ps-12 pr-7 py-[10px]">Upload
+                            photo</button> -->
+                        <input title="upload a image of this book" type="file" name="bookInfoImage" id="bookInfo-image"
+                            class="-ml-44 absolute opacity-0 z-0" value="Upload Photo">
+                    </div>
                 </div>
-                <button class="bg-blue px-5 xl:px-14 py-4 text-white rounded-e-md border-0">Search</button>
-            </form>
-        </section>
-        <section id="book-shelf-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[30px] xl:gap-16 mb-[99px]">
-            <div class="book" class="rounded-[20px] p-2 xl:p-5 shadow-xl">
-                <figure class="bg-light-gray rounded-[20px] xl:min-w-[334px] xl:min-h-[368px] md:p-5 xl:px-12 xl:py-8">
-                    <img class="w-11/12 mx-auto rounded-[10px]" src="./books/image 25.png" alt="book-19">
-                </figure>
-                <div class="mb-3 xl:mb-[22px]">
-                    <h4 class="pt-4 font-bold text-xl md:text-lg xl:text-2xl">JavaScript Everywhere</h4>
-                    <p class="pt-2 text-gray">Adam D. Scottark Lutz</p>
-                </div>
-                <div class="w-full flex justify-between items-center"><span
-                        class="text-blue text-2xl xl:text-4xl font-black">$<span id="price-1">234</span></span><button
-                        class="bg-blue py-2 xl:py-[14px] px-4 xl:px-[38px] rounded-[10px] text-white font-medium"
-                        type="button">Buy Now</button></div>
-            </div>
-            <div class="book" class="rounded-[20px] p-2 xl:p-5 shadow-xl">
-                <figure class="bg-light-gray rounded-[20px] xl:min-w-[334px] xl:min-h-[368px] md:p-5 xl:px-12 xl:py-8">
-                    <img class="w-11/12 mx-auto rounded-[10px]" src="./books/image 19.png" alt="book-19">
-                </figure>
-                <div class="mb-3 xl:mb-[22px]">
-                    <h4 class="pt-4 font-bold text-xl md:text-lg xl:text-2xl">Eloquent JavaScript</h4>
-                    <p class="pt-2 text-gray">Marijn Haverbeke</p>
-                </div>
-                <div class="w-full flex justify-between items-center"><span
-                        class="text-blue text-2xl xl:text-4xl font-black">$<span id="price-2">134</span></span><button
-                        class="bg-blue py-2 xl:py-[14px] px-4 xl:px-[38px] rounded-[10px] text-white font-medium"
-                        type="button">Buy
-                        Now</button></div>
-            </div>
-            <div class="book" class="rounded-[20px] p-2 xl:p-5 shadow-xl">
-                <figure class="bg-light-gray rounded-[20px] xl:min-w-[334px] xl:min-h-[368px] md:p-5 xl:px-12 xl:py-8">
-                    <img class="w-11/12 mx-auto rounded-[10px]" src="./books/image 20.png" alt="book-19">
-                </figure>
-                <div class="mb-3 xl:mb-[22px]">
-                    <h4 class="pt-4 font-bold text-xl md:text-lg xl:text-2xl">Learning React</h4>
-                    <p class="pt-2 text-gray">Alex Banks & Eve Porcello</p>
-                </div>
-                <div class="w-full flex justify-between items-center"><span
-                        class="text-blue text-2xl xl:text-4xl font-black">$<span id="price-3">434</span></span><button
-                        class="bg-blue py-2 xl:py-[14px] px-4 xl:px-[38px] rounded-[10px] text-white font-medium"
-                        type="button">Buy
-                        Now</button></div>
-            </div>
-            <div class="book" class="rounded-[20px] p-2 xl:p-5 shadow-xl">
-                <figure class="bg-light-gray rounded-[20px] xl:min-w-[334px] xl:min-h-[368px] md:p-5 xl:px-12 xl:py-8">
-                    <img class="w-11/12 mx-auto rounded-[10px]" src="./books/image 21.png" alt="book-19">
-                </figure>
-                <div class="mb-3 xl:mb-[22px]">
-                    <h4 class="pt-4 font-bold text-xl md:text-lg xl:text-2xl">The Road to React</h4>
-                    <p class="pt-2 text-gray">Robin Wieruch</p>
-                </div>
-                <div class="w-full flex justify-between items-center"><span
-                        class="text-blue text-2xl xl:text-4xl font-black">$<span id="price-4">345</span></span><button
-                        class="bg-blue py-2 xl:py-[14px] px-4 xl:px-[38px] rounded-[10px] text-white font-medium"
-                        type="button">Buy
-                        Now</button></div>
-            </div>
-            <div class="book" class="rounded-[20px] p-2 xl:p-5 shadow-xl">
-                <figure class="bg-light-gray rounded-[20px] xl:min-w-[334px] xl:min-h-[368px] md:p-5 xl:px-12 xl:py-8">
-                    <img class="w-11/12 mx-auto rounded-[10px]" src="./books/image 22.png" alt="book-19">
-                </figure>
-                <div class="mb-3 xl:mb-[22px]">
-                    <h4 class="pt-4 font-bold text-xl md:text-lg xl:text-2xl">The C Programming Language</h4>
-                    <p class="pt-2 text-gray">Brain W. Kernighan Dennis M. Ritchie</p>
-                </div>
-                <div class="w-full flex justify-between items-center"><span
-                        class="text-blue text-2xl xl:text-4xl font-black">$<span id="price-5">735</span></span><button
-                        class="bg-blue py-2 xl:py-[14px] px-4 xl:px-[38px] rounded-[10px] text-white font-medium"
-                        type="button">Buy
-                        Now</button></div>
-            </div>
-            <div class="book" class="rounded-[20px] p-2 xl:p-5 shadow-xl">
-                <figure class="bg-light-gray rounded-[20px] xl:min-w-[334px] xl:min-h-[368px] md:p-5 xl:px-12 xl:py-8">
-                    <img class="w-11/12 mx-auto rounded-[10px]" src="./books/image 23.png" alt="book-19">
-                </figure>
-                <div class="mb-3 xl:mb-[22px]">
-                    <h4 class="pt-4 font-bold text-xl md:text-lg xl:text-2xl">Effective TypeScript</h4>
-                    <p class="pt-2 text-gray">Dan Vanderkam</p>
-                </div>
-                <div class="w-full flex justify-between items-center"><span
-                        class="text-blue text-2xl xl:text-4xl font-black">$<span id="price-6">345</span></span><button
-                        class="bg-blue py-2 xl:py-[14px] px-4 xl:px-[38px] rounded-[10px] text-white font-medium"
-                        type="button">Buy
-                        Now</button></div>
-            </div>
-            <div class="book" class="rounded-[20px] p-2 xl:p-5 shadow-xl">
-                <figure class="bg-light-gray rounded-[20px] xl:min-w-[334px] xl:min-h-[368px] md:p-5 xl:px-12 xl:py-8">
-                    <img class="w-11/12 mx-auto rounded-[10px]" src="./books/image 29.png" alt="book-19">
-                </figure>
-                <div class="mb-3 xl:mb-[22px]">
-                    <h4 class="pt-4 font-bold text-xl md:text-lg xl:text-2xl">Python Crash Course</h4>
-                    <p class="pt-2 text-gray">Eric Matthes</p>
-                </div>
-                <div class="w-full flex justify-between items-center"><span
-                        class="text-blue text-2xl xl:text-4xl font-black">$<span id="price-7">876</span></span><button
-                        class="bg-blue py-2 xl:py-[14px] px-4 xl:px-[38px] rounded-[10px] text-white font-medium"
-                        type="button">Buy
-                        Now</button></div>
-            </div>
-            <div class="book" class="rounded-[20px] p-2 xl:p-5 shadow-xl">
-                <figure class="bg-light-gray rounded-[20px] xl:min-w-[334px] xl:min-h-[368px] md:p-5 xl:px-12 xl:py-8">
-                    <img class="w-11/12 mx-auto rounded-[10px]" src="./books/image 30.png" alt="book-19">
-                </figure>
-                <div class="mb-3 xl:mb-[22px]">
-                    <h4 class="pt-4 font-bold text-xl md:text-lg xl:text-2xl">Software Engineering at Google</h4>
-                    <p class="pt-2 text-gray">Titus Winter</p>
-                </div>
-                <div class="w-full flex justify-between items-center"><span
-                        class="text-blue text-2xl xl:text-4xl font-black">$<span id="price-8">678</span></span><button
-                        class="bg-blue py-2 xl:py-[14px] px-4 xl:px-[38px] rounded-[10px] text-white font-medium"
-                        type="button">Buy
-                        Now</button></div>
-            </div>
-            <div class="book" class="rounded-[20px] p-2 xl:p-5 shadow-xl">
-                <figure class="bg-light-gray rounded-[20px] xl:min-w-[334px] xl:min-h-[368px] md:p-5 xl:px-12 xl:py-8">
-                    <img class="w-11/12 mx-auto rounded-[10px]" src="./books/image 31.png" alt="book-19">
-                </figure>
-                <div class="mb-3 xl:mb-[22px]">
-                    <h4 class="pt-4 font-bold text-xl md:text-lg xl:text-2xl">Learn JavaScript Quickly</h4>
-                    <p class="pt-2 text-gray">Dan Vanderkam</p>
-                </div>
-                <div class="w-full flex justify-between items-center"><span
-                        class="text-blue text-2xl xl:text-4xl font-black">$<span id="price-9">600</span></span><button
-                        class="bg-blue py-2 xl:py-[14px] px-4 xl:px-[38px] rounded-[10px] text-white font-medium"
-                        type="button">Buy
-                        Now</button></div>
-            </div>
-        </section>
+            </main>
+        </aside>
     </main>
     <script src="./js/script.js"></script>
 </body>

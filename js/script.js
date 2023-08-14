@@ -11,6 +11,7 @@ tailwind.config = {
       colors: {
         blue: "#6946F4" /* For buttons */,
         "dip-blue": "#19103F" /* For admin panel */,
+        "active-blue": "#2F216A" /* For active admin panel */,
         "light-gray": "#F1F1F1" /* For bg */,
         gray: "#A9A9A9" /* For body text */,
         borderGray: "#ABABAB",
@@ -151,3 +152,9 @@ if (location.pathname === "/checkOut.html") {
 //   console.log(sectionId.childNodes[1].childNodes[5].childNodes[1]);
 //   sectionId.childNodes.inde
 // }
+
+if (location.pathname === "/admin_panel.html") {
+  console.log("This is admin panel.");
+  const fileInput = document.getElementById("bookInfo-image");
+  // console.dir(fileInput.chil);
+}
