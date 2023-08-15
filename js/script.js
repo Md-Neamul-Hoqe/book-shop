@@ -1,6 +1,5 @@
 console.clear();
-
-/* Tailwind Customisations */
+// /* Tailwind Customisations */
 tailwind.config = {
   theme: {
     extend: {
@@ -72,11 +71,17 @@ btn.forEach((button) => {
     const theBookId = Array.from(bookShelf).indexOf(book);
     localStorage.setItem("theBookId", theBookId);
 
-    console.log(Array.from(bookShelf).indexOf(book));
+    // console.log(Array.from(bookShelf).indexOf(book));
 
     location.pathname = "/checkOut.html";
   });
 });
+
+/**
+ * =============================
+ * Check Out Page
+ * =============================
+ */
 
 if (location.pathname === "/checkOut.html") {
   /* Get the values getting from localStorage */
@@ -142,49 +147,177 @@ if (location.pathname === "/checkOut.html") {
   TotalPrice.innerHTML = total.toFixed(2);
 }
 
-/* admin_panel [add book] */
+/**
+ * ====================================================
+ * Admin Panel Page
+ * ====================================================
+ */
 if (location.pathname === "/admin_panel.html") {
+  /* admin_panel [add book] */
   // console.log("This is admin panel.");
-  const fileInput = document.getElementById("bookInfo-image");
-  fileInput.addEventListener(
-    "change",
-    function (fileUploadingEvent) {
-      console.log(fileUploadingEvent);
-      const numOfFiles = fileUploadingEvent.target.files.length;
-      const fileName = fileUploadingEvent.target.files[0].name;
-      const fileSize = fileUploadingEvent.target.files[0].size;
-      const fileType = fileUploadingEvent.target.files[0].type;
-      const theFile = fileUploadingEvent.target.files[0];
-      const lastModifiedDate =
-        fileUploadingEvent.target.files[0].lastModifiedDate;
-      // if (fileName) {
-      //   console.log(theFile);
-      //   console.log(numOfFiles);
-      //   console.log(fileUploadingEvent.target.files, fileSize, fileType);
-      //   console.log(lastModifiedDate);
-      // }
-    },
-    false
-  );
+  // const fileInput = document.getElementById("bookInfo-image");
+  // fileInput?.addEventListener(
+  //   "change",
+  //   function (fileUploadingEvent) {
+  //     console.log(fileUploadingEvent);
+  //     const numOfFiles = fileUploadingEvent.target.files.length;
+  //     const fileName = fileUploadingEvent.target.files[0].name;
+  //     const fileSize = fileUploadingEvent.target.files[0].size;
+  //     const fileType = fileUploadingEvent.target.files[0].type;
+  //     const theFile = fileUploadingEvent.target.files[0];
+  //     const lastModifiedDate =
+  //       fileUploadingEvent.target.files[0].lastModifiedDate;
+  //     // if (fileName) {
+  //     //   console.log(theFile);
+  //     //   console.log(numOfFiles);
+  //     //   console.log(fileUploadingEvent.target.files, fileSize, fileType);
+  //     //   console.log(lastModifiedDate);
+  //     // }
+  //   },
+  //   false
+  // );
+
+  function uploadBook(id, name, author, price) {
+    console.log(
+      author.value && name.value && typeof parseFloat(price.value) == "number"
+    );
+    if (
+      author.value &&
+      name.value &&
+      typeof parseFloat(price.value) == "number"
+    ) {
+      const tr = document.createElement("tr");
+      tr.setAttribute("id", id);
+      tr.setAttribute("class", "h-4");
+      tr.innerHTML = `<td class="py-3 pl-11">${name.value}</td>
+  <td>${author.value}</td>
+  <td>$<span>${price.value}</span></td>
+  <td class="pr-10 text-center">
+      <img class="inline mr-2" width="24" height="24" src="./icons/pen.png" alt="edit">
+      <img class="inline" width="24" height="24" src="./icons/delete.png" alt="delete">
+  </td>`;
+
+      shelfTBody.appendChild(tr);
+
+      // shelfTBody.replaceChild(document.getElementById(id), tr);
+      /* How to add edited row in the deleted id */
+
+      /* Clear Input Fields */
+      (name.value = ""), (author.value = ""), (price.value = "");
+    } else {
+      // console.log(
+      //   author.value && name.value && typeof parseFloat(price.value) == "number"
+      // );
+      alert("Please Fill All The Fields Properly.");
+    }
+  }
+
+  /* Manage Books */
+
+  const shelfTBody = document.getElementById("shelfTBody");
+  // console.log(shelfTBody.childNodes);
+
+  /* Edit Books */
+  const actions = shelfTBody.childNodes;
+  // console.log(actions);
+  actions.forEach((action) => {
+    // console.log(action);
+
+    action.addEventListener("click", function (e) {
+      /* Edit button clicked */
+      const theRow = e.target.parentElement.parentElement;
+      if (e.target.getAttribute("alt") === "edit") {
+        // console.log(e.target);
+        const id = (document.getElementById("Id").value =
+          theRow.getAttribute("id"));
+        const nameOld = theRow.children[0].innerText;
+        const authorOld = theRow.children[1].innerText;
+        const priceOld = theRow.children[2].children[0].innerText;
+
+        // console.log(nameOld, authorOld, priceOld);
+
+        /* Set Old Values on edit-book to editing */
+        document.getElementById("editBookInfo-name").value = nameOld;
+        document.getElementById("editBookInfo-author").value = authorOld;
+        document.getElementById("editBookInfo-price").value = priceOld;
+
+        // console.log(theRow);
+        menuLinksUpdate("edit-book");
+        location.hash = "#edit-book";
+        theRow.remove();
+      }
+
+      /* Delete button clicked */
+      if (e.target.getAttribute("alt") === "delete") {
+        alert("The row is deleted.");
+
+        theRow.remove();
+      }
+    });
+  });
+
+  function editBook() {
+    const id = document.getElementById("Id").value;
+    const name = document.getElementById("editBookInfo-name");
+    const author = document.getElementById("editBookInfo-author");
+    const price = document.getElementById("editBookInfo-price");
+    // console.log(id, name, author, price);
+    /* Edit book  */
+    uploadBook(id, name, author, price);
+  }
+
+  /* Upload To The Bookshelf */
+  function addBook() {
+    const id = shelfTBody.lastElementChild.getAttribute("id") + 1;
+    const bookInfoName = document.getElementById("bookInfo-name");
+    const bookInfoPrice = document.getElementById("bookInfo-price");
+    const bookInfoAuthor = document.getElementById("bookInfo-author");
+    // console.log(
+    //   bookInfoAuthor.value &&
+    //     bookInfoName.value &&
+    //     typeof parseFloat(bookInfoPrice.value) == "number"
+    // );
+    uploadBook(id, bookInfoName, bookInfoAuthor, bookInfoPrice);
+  }
 
   /* left side bar */
-  const menuLinks = document
-    .getElementById("leftSidebar")
-    .querySelectorAll("li");
-  console.log(menuLinks);
-  // menuLinks.forEach((li) => {
-  //   li.addEventListener("click", function (event) {
-  //     event.target.style.backgroundColor = "bg-active-blue";
-  //     // event.target.addClass = "bg-active-blue";
-  //     // delete event.target.removeClass;
-  //     console.log(event.target.classList);
-  //   });
-  //   li.addEventListener("dblclick", function (event) {
-  //     if (event.target.style.backgroundColor == "bg-active-blue") {
-  //       console.log(event.target.classList[event.target.classList.length - 1]);
-  //       event.target.style.backgroundColor = "transparent";
-  //       console.log(event.target.classList);
-  //     }
-  //   });
-  // });
+  /* To Get Live elements [menuLinks] must use querySelector/All or forms */
+  const menuLinks = document.querySelectorAll("#leftSidebar li");
+
+  /* update menu links active effects and page show/hide when clicked */
+  menuLinks.forEach((li) => {
+    li.addEventListener("click", function (event) {
+      console.log(event.target);
+      let clickedHash = this.children[0].hash.slice(1);
+      menuLinksUpdate(clickedHash);
+    });
+  });
+
+  /* Show ClickedHash page [hide others] | change active link to current page link */
+  function menuLinksUpdate(clickedHash) {
+    // console.log(clickedHash);
+    const clickedPageid = document.getElementById(clickedHash);
+
+    if (clickedPageid.classList.contains("hidden")) {
+      /* hidden section clicked */
+      clickedPageid.classList.remove("hidden");
+
+      menuLinks.forEach((liSibling) => {
+        // console.log(liSibling);
+        let hash = liSibling.children[0].hash.slice(1);
+        if (hash !== clickedHash) {
+          // console.log(hash);
+          let pageId = document.getElementById(hash);
+
+          if (!pageId.classList.contains("hidden")) {
+            pageId.classList.add("hidden");
+            liSibling.classList.remove("bg-gradient-to-b");
+          }
+        } else {
+          /* if hash === clickedHash then active effect to the menu list 'li' */
+          liSibling.classList.add("bg-gradient-to-b");
+        }
+      });
+    }
+  }
 }
