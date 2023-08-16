@@ -74,8 +74,10 @@
                             <td class="">Adam D. Scottark Lutz</td>
                             <td>$<span>234</span></td>
                             <td class="pr-10 text-center">
-                                <img class="inline mr-2" width="24" height="24" src="./icons/pen.png" alt="edit">
-                                <img class="inline" width="24" height="24" src="./icons/delete.png" alt="delete">
+                                <img class="inline cursor-pointer mr-2" width="24" height="24" src="./icons/pen.png"
+                                    alt="edit">
+                                <img class="inline cursor-pointer" width="24" height="24" src="./icons/delete.png"
+                                    alt="delete">
                             </td>
                         </tr>
                         <tr id="2" class="h-8">
@@ -83,8 +85,10 @@
                             <td class="">Adam D. Scottark Lutz</td>
                             <td>$<span>234</span></td>
                             <td class="pr-10 text-center">
-                                <img class="inline mr-2" width="24" height="24" src="./icons/pen.png" alt="edit">
-                                <img class="inline" width="24" height="24" src="./icons/delete.png" alt="delete">
+                                <img class="inline cursor-pointer mr-2" width="24" height="24" src="./icons/pen.png"
+                                    alt="edit">
+                                <img class="inline cursor-pointer" width="24" height="24" src="./icons/delete.png"
+                                    alt="delete">
                             </td>
                         </tr>
                         <tr id="3" class="h-8">
@@ -92,8 +96,10 @@
                             <td class="">Adam D. Scottark Lutz</td>
                             <td>$<span>234</span></td>
                             <td class="pr-10 text-center">
-                                <img class="inline mr-2" width="24" height="24" src="./icons/pen.png" alt="edit">
-                                <img class="inline" width="24" height="24" src="./icons/delete.png" alt="delete">
+                                <img class="inline cursor-pointer mr-2" width="24" height="24" src="./icons/pen.png"
+                                    alt="edit">
+                                <img class="inline cursor-pointer" width="24" height="24" src="./icons/delete.png"
+                                    alt="delete">
                             </td>
                         </tr>
                         <tr id="4" class="h-8">
@@ -101,8 +107,10 @@
                             <td class="">Adam D. Scottark Lutz</td>
                             <td>$<span>234</span></td>
                             <td class="pr-10 text-center">
-                                <img class="inline mr-2" width="24" height="24" src="./icons/pen.png" alt="edit">
-                                <img class="inline" width="24" height="24" src="./icons/delete.png" alt="delete">
+                                <img class="inline cursor-pointer mr-2" width="24" height="24" src="./icons/pen.png"
+                                    alt="edit">
+                                <img class="inline cursor-pointer" width="24" height="24" src="./icons/delete.png"
+                                    alt="delete">
                             </td>
                         </tr>
                     </tbody>
@@ -144,11 +152,12 @@
                             class="text-[#6946F4] bg-[#E3DCFF] border-[#6946F4] rounded ps-12 pr-7 py-[10px]">Upload
                             photo</button> -->
                         <input title="upload a image of this book" type="file" accept="image/*" name="bookInfoImage"
-                            id="bookInfo-image" class="-ml-44 absolute opacity-0" value="Upload Photo">
+                            id="bookInfo-image" class="-ml-[173px] -mt-4 absolute opacity-0 cursor-pointer w-44"
+                            value="Upload Photo">
                     </div>
                 </div>
                 <button class="bg-blue text-white px-6 py-2 rounded float-right clear-both mt-4"
-                    onclick="addBook()">Save</button>
+                    onclick="addBook();updateList()">Save</button>
             </main>
         </aside>
 
@@ -188,7 +197,7 @@
                     </div>
                 </div>
                 <button class="bg-blue text-white px-6 py-2 rounded float-right clear-both mt-4"
-                    onclick="editBook(); menuLinksUpdate('add-book')">Save</button>
+                    onclick="editBook(); menuLinksUpdate('manage-books');updateList()">Save</button>
             </main>
         </aside>
     </main>

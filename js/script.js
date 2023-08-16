@@ -1,5 +1,5 @@
 console.clear();
-// /* Tailwind Customisations */
+/* Tailwind Customisations */
 tailwind.config = {
   theme: {
     extend: {
@@ -28,7 +28,7 @@ function varification() {
   logedIn(true);
 }
 
-logedIn(true);
+logedIn(true); /* How to remove login button when signed in logedIn(false) */
 function logedIn(signedIn) {
   if (location.pathname === "/index.html" && signedIn) {
     const loginBtn = document.getElementById("loginBtn");
@@ -39,20 +39,13 @@ function logedIn(signedIn) {
   }
 }
 
-if (
-  location.pathname === "/login.html" ||
-  location.pathname === "/createAccount.html"
-) {
-  const navBar = document.getElementById("links");
-  navBar.style.display = "none";
-  navBar.nextElementSibling.style.display = "none";
-  //   console.log(navBar.nextElementSibling);
-}
-
-// function addToCart() {
+/**
+ * =============================
+ * Home Page Page
+ * =============================
+ */
+/* "Buy Now" button */
 const btn = document.querySelectorAll("#book-shelf-section .book button");
-//   console.log(btn);
-
 btn.forEach((button) => {
   button.addEventListener("click", function (event) {
     /* Save to the local Storage to use another page (checkOut.html) */
@@ -64,18 +57,25 @@ btn.forEach((button) => {
       "bookName",
       event.target.parentElement.parentElement.children[1].children[0].innerHTML
     );
-    // console.log(event.target.parentElement.parentElement);
+
     const book = event.target.parentElement.parentElement;
     const bookShelf =
       event.target.parentElement.parentElement.parentElement.children;
     const theBookId = Array.from(bookShelf).indexOf(book);
     localStorage.setItem("theBookId", theBookId);
 
-    // console.log(Array.from(bookShelf).indexOf(book));
-
     location.pathname = "/checkOut.html";
   });
 });
+
+if (
+  location.pathname === "/login.html" ||
+  location.pathname === "/createAccount.html"
+) {
+  const navBar = document.getElementById("links");
+  navBar.style.display = "none";
+  navBar.nextElementSibling.style.display = "none";
+}
 
 /**
  * =============================
@@ -135,7 +135,6 @@ if (location.pathname === "/checkOut.html") {
 
   var numOfCartItems = tbody.children.length;
 
-  // console.log(numOfCartItems);
   // console.dir(tbody.children[0].children[2].innerHTML);
   let total = 0;
   for (let index = 0; index < numOfCartItems; index++) {
@@ -153,13 +152,12 @@ if (location.pathname === "/checkOut.html") {
  * ====================================================
  */
 if (location.pathname === "/admin_panel.html") {
+  /* [file upload not functional] */
   /* admin_panel [add book] */
-  // console.log("This is admin panel.");
   // const fileInput = document.getElementById("bookInfo-image");
   // fileInput?.addEventListener(
   //   "change",
   //   function (fileUploadingEvent) {
-  //     console.log(fileUploadingEvent);
   //     const numOfFiles = fileUploadingEvent.target.files.length;
   //     const fileName = fileUploadingEvent.target.files[0].name;
   //     const fileSize = fileUploadingEvent.target.files[0].size;
@@ -178,9 +176,6 @@ if (location.pathname === "/admin_panel.html") {
   // );
 
   function uploadBook(id, name, author, price) {
-    console.log(
-      author.value && name.value && typeof parseFloat(price.value) == "number"
-    );
     if (
       author.value &&
       name.value &&
@@ -193,8 +188,8 @@ if (location.pathname === "/admin_panel.html") {
   <td>${author.value}</td>
   <td>$<span>${price.value}</span></td>
   <td class="pr-10 text-center">
-      <img class="inline mr-2" width="24" height="24" src="./icons/pen.png" alt="edit">
-      <img class="inline" width="24" height="24" src="./icons/delete.png" alt="delete">
+      <img class="inline cursor-pointer mr-2" width="24" height="24" src="./icons/pen.png" alt="edit">
+      <img class="inline cursor-pointer" width="24" height="24" src="./icons/delete.png" alt="delete">
   </td>`;
 
       shelfTBody.appendChild(tr);
@@ -204,66 +199,66 @@ if (location.pathname === "/admin_panel.html") {
 
       /* Clear Input Fields */
       (name.value = ""), (author.value = ""), (price.value = "");
+      return true;
     } else {
-      // console.log(
-      //   author.value && name.value && typeof parseFloat(price.value) == "number"
-      // );
       alert("Please Fill All The Fields Properly.");
+      return false;
     }
   }
 
   /* Manage Books */
-
   const shelfTBody = document.getElementById("shelfTBody");
-  // console.log(shelfTBody.childNodes);
 
   /* Edit Books */
-  const actions = shelfTBody.childNodes;
-  // console.log(actions);
-  actions.forEach((action) => {
-    // console.log(action);
+  updateList();
+  function updateList() {
+    const actions = shelfTBody.childNodes;
+    // console.log(actions);
+    actions.forEach((action) => {
+      // console.log(action);
+      action.addEventListener("click", function (e) {
+        /* Edit button clicked */
+        const theRow = e.target.parentElement.parentElement;
+        if (e.target.getAttribute("alt") === "edit") {
+          // console.log('Updated: ',theRow);
+          const id = (document.getElementById("Id").value =
+            theRow.getAttribute("id"));
+          const nameOld = theRow.children[0].innerText;
+          const authorOld = theRow.children[1].innerText;
+          const priceOld = theRow.children[2].children[0].innerText;
 
-    action.addEventListener("click", function (e) {
-      /* Edit button clicked */
-      const theRow = e.target.parentElement.parentElement;
-      if (e.target.getAttribute("alt") === "edit") {
-        // console.log(e.target);
-        const id = (document.getElementById("Id").value =
-          theRow.getAttribute("id"));
-        const nameOld = theRow.children[0].innerText;
-        const authorOld = theRow.children[1].innerText;
-        const priceOld = theRow.children[2].children[0].innerText;
+          /* Set Old Values on edit-book to editing */
+          document.getElementById("editBookInfo-name").value = nameOld;
+          document.getElementById("editBookInfo-author").value = authorOld;
+          document.getElementById("editBookInfo-price").value = priceOld;
 
-        // console.log(nameOld, authorOld, priceOld);
+          menuLinksUpdate("edit-book");
+          location.hash = "#edit-book";
+          theRow.remove();
+        }
 
-        /* Set Old Values on edit-book to editing */
-        document.getElementById("editBookInfo-name").value = nameOld;
-        document.getElementById("editBookInfo-author").value = authorOld;
-        document.getElementById("editBookInfo-price").value = priceOld;
-
-        // console.log(theRow);
-        menuLinksUpdate("edit-book");
-        location.hash = "#edit-book";
-        theRow.remove();
-      }
-
-      /* Delete button clicked */
-      if (e.target.getAttribute("alt") === "delete") {
-        alert("The row is deleted.");
-
-        theRow.remove();
-      }
+        /* Delete button clicked */
+        if (e.target.getAttribute("alt") === "delete") {
+          alert("The row is deleted.");
+          // console.log("Deleted: ", theRow);
+          theRow.remove();
+        }
+      });
     });
-  });
+  }
 
   function editBook() {
     const id = document.getElementById("Id").value;
     const name = document.getElementById("editBookInfo-name");
     const author = document.getElementById("editBookInfo-author");
     const price = document.getElementById("editBookInfo-price");
-    // console.log(id, name, author, price);
+
     /* Edit book  */
-    uploadBook(id, name, author, price);
+    if (uploadBook(id, name, author, price)) {
+      alert("The value is updated.");
+    } else {
+      alert("Error: The value can't updated.");
+    }
   }
 
   /* Upload To The Bookshelf */
@@ -272,12 +267,12 @@ if (location.pathname === "/admin_panel.html") {
     const bookInfoName = document.getElementById("bookInfo-name");
     const bookInfoPrice = document.getElementById("bookInfo-price");
     const bookInfoAuthor = document.getElementById("bookInfo-author");
-    // console.log(
-    //   bookInfoAuthor.value &&
-    //     bookInfoName.value &&
-    //     typeof parseFloat(bookInfoPrice.value) == "number"
-    // );
-    uploadBook(id, bookInfoName, bookInfoAuthor, bookInfoPrice);
+
+    if (uploadBook(id, bookInfoName, bookInfoAuthor, bookInfoPrice)) {
+      alert("The book is uploaded successfully");
+    } else {
+      alert("Erorr: Can't Uploaded.");
+    }
   }
 
   /* left side bar */
@@ -287,7 +282,6 @@ if (location.pathname === "/admin_panel.html") {
   /* update menu links active effects and page show/hide when clicked */
   menuLinks.forEach((li) => {
     li.addEventListener("click", function (event) {
-      console.log(event.target);
       let clickedHash = this.children[0].hash.slice(1);
       menuLinksUpdate(clickedHash);
     });
@@ -295,18 +289,16 @@ if (location.pathname === "/admin_panel.html") {
 
   /* Show ClickedHash page [hide others] | change active link to current page link */
   function menuLinksUpdate(clickedHash) {
-    // console.log(clickedHash);
     const clickedPageid = document.getElementById(clickedHash);
 
     if (clickedPageid.classList.contains("hidden")) {
       /* hidden section clicked */
       clickedPageid.classList.remove("hidden");
+      location.hash = clickedHash;
 
       menuLinks.forEach((liSibling) => {
-        // console.log(liSibling);
         let hash = liSibling.children[0].hash.slice(1);
         if (hash !== clickedHash) {
-          // console.log(hash);
           let pageId = document.getElementById(hash);
 
           if (!pageId.classList.contains("hidden")) {
